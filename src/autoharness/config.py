@@ -48,6 +48,13 @@ INDEX_DESC_MAX_CHARS = _int_env("AUTOHARNESS_INDEX_DESC_MAX_CHARS", 60)
 # without the index is to run without the plugin — which also removes the counters that measure the
 # result. Also a legitimate operator knob for anyone unwilling to spend the context every session.
 INDEX_SUSPENDED = bool(_int_env("AUTOHARNESS_INDEX_SUSPENDED", 0))
+DISABLE_GLOBAL = bool(_int_env("AUTOHARNESS_DISABLE_GLOBAL", 0))
+
+
+def active_layers():
+    """Layers this deployment may inspect and manage."""
+    return (layer.PROJECT,) if DISABLE_GLOBAL else layer.LAYERS
+
 
 # folder-skill subfile caps (ponytail: placeholders like STAGE_MAX_BODY_BYTES, calibrate in experiments/)
 STAGE_MAX_FILES = 8
